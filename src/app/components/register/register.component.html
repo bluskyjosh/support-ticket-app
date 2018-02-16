@@ -1,45 +1,65 @@
-<div class="row mt-4">
-  <div class="col-lg-4 col-md-4 col-sm-12 col-12 offset-lg-4 offset-md-4">
-    <div class="card pr-4 pl-4">
-      <div class="card-block">
-        <div class="login-title card-title" style="margin:15px">Log into your Support Ticket Account</div>
-        <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !first_name.valid }">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="model.first_name" #first_name="ngModel" required />
-            <div *ngIf="f.submitted && !first_name.valid" class="help-block">First Name is required</div>
-          </div>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !last_name.valid }">
-            <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="model.last_name" #last_name="ngModel" required />
-            <div *ngIf="f.submitted && !last_name.valid" class="help-block">Last Name is required</div>
-          </div>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" name="email" [(ngModel)]="model.email" #username="ngModel" required />
-            <div *ngIf="f.submitted && !username.valid" class="help-block">Email is required</div>
-          </div>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="model.password" #password="ngModel"
-                   required />
-            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-          </div>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !confirmPassword.valid }">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="model.confirm_password" #confirmPassword="ngModel"
-                   required />
-            <div *ngIf="f.submitted && !confirmPassword.valid" class="help-block">Confirm Password is required</div>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-lg-6 col-md-4 col-sm-8 col-8">
-                <button [disabled]="loading" class="btn btn-primary">Register</button>
-                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+<div class="container">
+  <div class="row mt-4 justify-content-center">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+      <div class="card pr-4 pl-4">
+        <div class="card-block">
+          <div class="login-title card-title" style="margin:15px">Log into your Support Ticket Account</div>
+          <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+            <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !first_name.valid }">
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control" id="firstName" name="firstName"
+                     [(ngModel)]="model.first_name"
+                     #first_name="ngModel"
+                     [ngClass]="{ 'is-invalid': f.submitted && !first_name.valid }"
+                     required />
+              <div *ngIf="f.submitted && !first_name.valid" class="help-block invalid-feedback">First Name is required</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !last_name.valid }">
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control" id="lastName" name="lastName"
+                     [(ngModel)]="model.last_name"
+                     #last_name="ngModel"
+                     [ngClass]="{ 'is-invalid': f.submitted && !last_name.valid }"
+                     required />
+              <div *ngIf="f.submitted && !last_name.valid" class="help-block invalid-feedback">Last Name is required</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !username.valid }">
+              <label for="email">Email</label>
+              <input type="text" class="form-control" id="email" name="email"
+                     [(ngModel)]="model.email"
+                     #username="ngModel"
+                     [ngClass]="{ 'is-invalid': f.submitted && !username.valid }"
+                     required />
+              <div *ngIf="f.submitted && !username.valid" class="help-block invalid-feedback">Email is required</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !password.valid }">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password"
+                     [(ngModel)]="model.password"
+                     #password="ngModel"
+                     [ngClass]="{ 'is-invalid': f.submitted && !password.valid }"
+                     required />
+              <div *ngIf="f.submitted && !password.valid" class="help-block invalid-feedback">Password is required</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !confirmPassword.valid }">
+              <label for="password">Confirm Password</label>
+              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                     [(ngModel)]="model.confirm_password"
+                     #confirmPassword="ngModel"
+                     [ngClass]="{ 'is-invalid': f.submitted && !confirmPassword.valid }"
+                     required />
+              <div *ngIf="f.submitted && !confirmPassword.valid" class="help-block invalid-feedback">Confirm Password is required</div>
+            </div>
+            <div class="form-group">
+              <div class="row">
+                <div class="col-lg-6 col-md-4 col-sm-8 col-8">
+                  <button [disabled]="loading" class="btn btn-primary">Register</button>
+                  <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
