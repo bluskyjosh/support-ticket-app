@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="row mt-4 justify-content-center">
+  <div class="row mt-5 justify-content-center">
     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
       <div class="card pr-4 pl-4">
         <div class="card-block">
-          <div class="login-title card-title" style="margin:15px">Log into your Support Ticket Account</div>
+          <div class="login-title card-title" style="margin:15px"><h4>Log into your Support Ticket Account</h4></div>
           <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
             <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !username.valid }">
               <label class="form-control-label" for="email">Email</label>

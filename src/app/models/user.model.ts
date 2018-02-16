@@ -7,6 +7,7 @@ export class User extends ModelBase {
   email: string;
   password: string;
   confirm_password: string;
+  is_admin: boolean;
   created_at: string;
   updated_at: string;
 }

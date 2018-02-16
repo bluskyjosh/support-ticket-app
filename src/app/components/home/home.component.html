@@ -1,3 +1,50 @@
-<p>
-  home works!
-</p>
+<header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+  <a class="navbar-brand" href="home">Support Tickets</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown" [ngClass]="{ 'active': isActiveComponent('MyTickets') || isActiveComponent('AllTickets') }">
+        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="ticketDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Tickets
+        </a>
+        <div class="dropdown-menu bg-dark text-white" aria-labelledby="ticketDropdown">
+          <a class="dropdown-item" (click)="setVisibleComponent('MyTickets')">My Tickets</a>
+          <a class="dropdown-item" *ngIf="currentUser.is_admin" (click)="setVisibleComponent('AllTickets')">All Tickets</a>
+        </div>
+      </li>
+      <li class="nav-item" [ngClass]="{ 'active': isActiveComponent('Users')}">
+        <a class="nav-link" *ngIf="currentUser.is_admin" (click)="setVisibleComponent('Users')">Manage Users</a>
+      </li>
+      <li class="nav-item" [ngClass]="{ 'active': isActiveComponent('SupportSettings')}">
+        <a class="nav-link" *ngIf="currentUser.is_admin" (click)="setVisibleComponent('SupportSettings')">Manage Support Settings</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Hi, {{currentUser.first_name}}
+        </a>
+        <div class="dropdown-menu bg-dark text-white" aria-labelledby="ticketDropdown">
+          <a class="dropdown-item" style="cursor: pointer" (click)="logout()">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <main role="main" class="col-lg-10 col-md-12 col-sm-12 col-12">
+      <app-my-tickets *ngIf="isActiveComponent('MyTickets')"></app-my-tickets>
+      <app-all-tickets *ngIf="isActiveComponent('AllTickets')"></app-all-tickets>
+      <app-users *ngIf="isActiveComponent('Users')"></app-users>
+      <app-support-settings *ngIf="isActiveComponent('SupportSettings')"></app-support-settings>
+    </main>
+  </div>
+
+</div>

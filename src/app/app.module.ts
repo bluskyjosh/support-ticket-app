@@ -7,9 +7,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { routing } from './app.routing';
+import { ToastrModule } from 'ngx-toastr';
 
 
-import { AppComponent } from './app.component';
+
+import {AlertMessageService} from './services/alert-message.service';
 import {AuthGuard} from './utilities/auth-guard';
 import {AuthService} from './services/auth.service';
 import {CategoryService} from './services/category.service';
@@ -19,11 +21,23 @@ import {StatusService} from './services/status.service';
 import {TicketService} from './services/ticket.service';
 import {UserService} from './services/user.service';
 
-
 import * as $ from 'jquery';
+
+import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { MyTicketsComponent } from './components/my-tickets/my-tickets.component';
+import { AllTicketsComponent } from './components/all-tickets/all-tickets.component';
+import { UsersComponent } from './components/users/users.component';
+import { SupportSettingsComponent } from './components/support-settings/support-settings.component';
+import { TicketComponent } from './components/ticket/ticket.component';
+import { UserComponent } from './components/user/user.component';
+import { CategoryComponent } from './components/category/category.component';
+import { PriorityComponent } from './components/priority/priority.component';
+import { StatusComponent } from './components/status/status.component';
+
 
 
 
@@ -32,7 +46,17 @@ import { RegisterComponent } from './components/register/register.component';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PasswordResetComponent,
+    MyTicketsComponent,
+    AllTicketsComponent,
+    UsersComponent,
+    SupportSettingsComponent,
+    TicketComponent,
+    UserComponent,
+    CategoryComponent,
+    PriorityComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +67,13 @@ import { RegisterComponent } from './components/register/register.component';
     NgbModule.forRoot(),
     NgxChartsModule,
     ReactiveFormsModule,
-    routing
+    routing,
+    ToastrModule.forRoot({
+      enableHtml: true
+    }),
   ],
   providers: [
+    AlertMessageService,
     AuthGuard,
     AuthService,
     CategoryService,
