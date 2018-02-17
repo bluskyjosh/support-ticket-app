@@ -13,6 +13,22 @@
                    [sorts]="[{prop: 'id', dir:'acs'}]">
 
       <!--Column Templates-->
+      <ngx-datatable-column name="Edit"
+                            [resizeable]="false"
+                            [sortable]="false"
+                            [draggable]="false"
+                            [maxWidth]="80"
+      >
+        <ng-template let-row="row" ngx-datatable-header-template>
+          Edit
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="text-center">
+            <i class="btn fa fa-pencil-square-o fa-lg" (click)="openModal(row)" title="Edit Status"></i>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
       <ngx-datatable-column name="Id"
                             prop="id"
                             [resizeable]="false"
@@ -52,11 +68,15 @@
                        [draggable]="false">
         <ng-template let-row="row" ngx-datatable-header-template>
           <div class="pull-right">
-            <i class="btn btn-success" title="Add Status">
+            <i class="btn btn-success" (click)="onNew()" title="Add Status">
               <span class="fa fa-plus fa-lg"></span>
             </i>
           </div>
 
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <i class="btn fa fa-trash fa-lg pull-right"
+             (click)="deleteItem(row,$event)" title="Delete Status"></i>
         </ng-template>
       </ngx-datatable-column>
 

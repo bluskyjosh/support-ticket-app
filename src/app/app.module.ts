@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ColorPickerModule} from 'ngx-color-picker';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -64,6 +65,7 @@ import { StatusesComponent } from './components/statuses/statuses.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ColorPickerModule,
     HttpModule,
     HttpClientModule,
     FormsModule,
@@ -88,6 +90,10 @@ import { StatusesComponent } from './components/statuses/statuses.component';
     UserService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [CategoryComponent]
+  entryComponents: [
+    CategoryComponent,
+    PriorityComponent,
+    StatusComponent
+  ]
 })
 export class AppModule { }

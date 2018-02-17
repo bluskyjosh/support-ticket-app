@@ -1,3 +1,52 @@
-<p>
-  priority works!
-</p>
+
+<div class="modal-header">
+  <div class="modal-body">
+    <h4 class="modal-title">{{type}} Priority</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+<div class="modal-body">
+
+  <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+
+    <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !priority_name.valid }">
+      <label for="name">Priority Name</label>
+      <input type="text" class="form-control" id="name" name="name"
+             [(ngModel)]="priority.name"
+             #priority_name="ngModel"
+             [ngClass]="{ 'is-invalid': f.submitted && !priority_name.valid }"
+             required />
+      <div *ngIf="f.submitted && !priority_name.valid" class="help-block invalid-feedback">Priority Name is Required</div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Priority Description</label>
+      <textarea class="form-control" id="description" name="description"
+                [(ngModel)]="priority.description"
+                #description="ngModel"
+                rows="10"
+      ></textarea>
+    </div>
+
+    <div class="col-4 form-group">
+      <label for="color">Priority Color</label>
+      <input id="color"
+             name="color"
+             class="form-control"
+             [value]="priority.color"
+             [style.background]="priority.color"
+             [cpCancelButton]="true"
+             [(colorPicker)]="priority.color">
+    </div>
+
+    <div class="form-group">
+      <button type="button" class="btn" (click)="activeModal.dismiss('Close Click')">Cancel</button>
+      <button  class="btn btn-primary">Save</button>
+      <!--<button type="button" class="btn btn-danger pull-right" (click)="delete()">Delete</button>-->
+    </div>
+  </form>
+
+</div>
+

@@ -33,18 +33,21 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  onSelect({selected}) {
-    this.openModal(selected[0]);
-  }
-
   openModal(category: Category) {
     const original = new Category().from(category);
     const modalRef = this.modalService.open(CategoryComponent, this.modalOptions);
     modalRef.componentInstance.category = original;
-    modalRef.result.then((success) => {
-        this.categoryService.getCategories().subscribe(data => {
-          this.categories = data;
+    modalRef.result.then((data) => {
+        const foundCategory = this.categories.find((o, i) => {
+          if (o.id === data.id) {
+            this.categories[i] = data;
+            return true;
+          }
         });
+        if (typeof foundCategory === 'undefined') {
+          this.categories.push(data);
+        }
+        this.categories = [...this.categories];
       },
       (dismissed) => {
       });
@@ -55,12 +58,12 @@ export class CategoriesComponent implements OnInit {
     this.openModal(category);
   }
 
-  deleteItem(id: number, event) {
-    this.categoryService.deleteCategory(id).subscribe( success => {
+  deleteItem(category: Category, event) {
+    this.categoryService.deleteCategory(category.id).subscribe( (data) => {
       this.alertMessageService.showSuccess('Category successfully deleted.', 'Delete Successful');
-      this.categoryService.getCategories().subscribe(data => {
-        this.categories = data;
-      });
+      const index = this.categories.indexOf(category);
+      this.categories.splice(index, 1);
+
     },
       errors => {
         const alertErrors = new AlertError().from(errors.json());
