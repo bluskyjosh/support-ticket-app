@@ -1,6 +1,5 @@
 <div class="row mt-4">
   <div class="col-12">
-
     <h2>Tickets</h2>
     <ngx-datatable #categoryTable
                    class="material"
@@ -27,7 +26,7 @@
                             [sortable]="true"
                             [draggable]="false">
         <ng-template let-value="value" ngx-datatable-cell-template>
-          <span data-toggle="tooltip" title="{{value.description}}">{{value.name}}</span>
+          <span placement="bottom" ngbTooltip="{{value.description}}">{{value.name}}</span>
         </ng-template>
       </ngx-datatable-column>
 
@@ -38,7 +37,7 @@
                             [sortable]="true"
                             [draggable]="false">
         <ng-template let-value="value" ngx-datatable-cell-template>
-          <div class="color-att" data-toggle="tooltip" title="{{value.description}}" [ngStyle]="setStyle(value.color)">{{value.name}}</div>
+          <div class="color-att"  placement="bottom" ngbTooltip="{{value.description}}" [ngStyle]="setStyle(value.color)">{{value.name}}</div>
         </ng-template>
       </ngx-datatable-column>
 
@@ -63,7 +62,7 @@
                             [sortable]="true"
                             [draggable]="false">
         <ng-template let-value="value" ngx-datatable-cell-template>
-          <div class="color-att" data-toggle="tooltip" title="{{value.description}}" [ngStyle]="setStyle(value.color)">{{value.name}}</div>
+          <div class="color-att" placement="bottom" ngbTooltip="{{value.description}}" [ngStyle]="setStyle(value.color)">{{value.name}}</div>
         </ng-template>
       </ngx-datatable-column>
 

@@ -87,6 +87,7 @@ import { StatusesComponent } from './components/statuses/statuses.component';
     TicketService,
     UserService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CategoryComponent]
 })
 export class AppModule { }
