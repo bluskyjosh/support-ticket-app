@@ -73,3 +73,9 @@ button {
 .toast-container .toast {
     width: auto !important;
 }
+
+.color-att {
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}

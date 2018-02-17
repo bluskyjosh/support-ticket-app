@@ -13,27 +13,27 @@ export class CommentService extends ServiceBase {
   }
 
   getComments(ticket_id: number): Observable<Comment[]> {
-    return this.http.get(this.createUrl('tickets/' + ticket_id + '/comments'), this.options)
+    return this.http.get(this.createUrl('tickets/' + ticket_id + '/comments'), this.createRequestHeaderOptions())
       .map(this.extractComments);
   }
 
   getComment(ticket_id: number, comment_id: number): Observable<Comment> {
-    return this.http.get(this.createUrl('tickets/' + ticket_id + '/comments/' + comment_id), this.options)
+    return this.http.get(this.createUrl('tickets/' + ticket_id + '/comments/' + comment_id), this.createRequestHeaderOptions())
       .map(this.extractComment);
   }
 
   createComment(ticket_id: number, comment: Comment): Observable<Comment> {
-    return this.http.post(this.createUrl('tickets/' + ticket_id + '/comments'), comment, this.options)
+    return this.http.post(this.createUrl('tickets/' + ticket_id + '/comments'), comment, this.createRequestHeaderOptions())
       .map(this.extractComment);
   }
 
   updateComment(ticket_id: number, comment: Comment): Observable<Comment> {
-    return this.http.put(this.createUrl('tickets/' + ticket_id + '/comments/' + comment.id), comment, this.options)
+    return this.http.put(this.createUrl('tickets/' + ticket_id + '/comments/' + comment.id), comment, this.createRequestHeaderOptions())
       .map(this.extractComment);
   }
 
   deleteComment(ticket_id: number, comment_id: number): Observable<object> {
-    return this.http.delete(this.createUrl('tickets/' + ticket_id + '/comments/' + comment_id), this.options)
+    return this.http.delete(this.createUrl('tickets/' + ticket_id + '/comments/' + comment_id), this.createRequestHeaderOptions())
       .map(data => {
         return data;
     });

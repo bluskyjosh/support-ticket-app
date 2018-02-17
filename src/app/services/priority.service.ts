@@ -13,27 +13,27 @@ export class PriorityService extends ServiceBase {
   }
 
   getPriorities (): Observable<Priority[]> {
-    return this.http.get(this.createUrl('priorities'), this.options)
+    return this.http.get(this.createUrl('priorities'), this.createRequestHeaderOptions())
       .map(this.extractPriorities);
   }
 
   getPriority(id: number): Observable<Priority> {
-    return this.http.get(this.createUrl('priorities/' + id), this.options)
+    return this.http.get(this.createUrl('priorities/' + id), this.createRequestHeaderOptions())
       .map(this.extractPriority);
   }
 
   createPriority(priority: Priority): Observable<Priority> {
-    return this.http.post(this.createUrl('priorities'), priority, this.options)
+    return this.http.post(this.createUrl('priorities'), priority, this.createRequestHeaderOptions())
       .map(this.extractPriority);
   }
 
   updatePriority(priority: Priority): Observable<Priority> {
-    return this.http.put(this.createUrl('priorities/' + priority.id), priority, this.options)
+    return this.http.put(this.createUrl('priorities/' + priority.id), priority, this.createRequestHeaderOptions())
       .map(this.extractPriority);
   }
 
   deletePriority(id: number): Observable<object> {
-    return this.http.delete(this.createUrl('priorities/' + id), this.options)
+    return this.http.delete(this.createUrl('priorities/' + id), this.createRequestHeaderOptions())
       .map(data => {
         return data;
       });

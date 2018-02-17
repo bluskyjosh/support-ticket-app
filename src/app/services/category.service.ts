@@ -14,27 +14,27 @@ export class CategoryService extends ServiceBase {
   }
 
   getCategories (): Observable<Category[]> {
-    return this.http.get(this.createUrl('categories'), this.options)
+    return this.http.get(this.createUrl('categories'), this.createRequestHeaderOptions())
       .map(this.extractCategories);
   }
 
   getCategory(id: number): Observable<Category> {
-    return this.http.get(this.createUrl('categories/' + id), this.options)
+    return this.http.get(this.createUrl('categories/' + id), this.createRequestHeaderOptions())
       .map(this.extractCategory);
   }
 
   createCategory(category: Category): Observable<Category> {
-    return this.http.post(this.createUrl('categories'), category, this.options)
+    return this.http.post(this.createUrl('categories'), category, this.createRequestHeaderOptions())
       .map(this.extractCategory);
   }
 
   updateCategory(category: Category): Observable<Category> {
-    return this.http.put(this.createUrl('categories/' + category.id), category, this.options)
+    return this.http.put(this.createUrl('categories/' + category.id), category, this.createRequestHeaderOptions())
       .map(this.extractCategory);
   }
 
   deleteCategory(id: number): Observable<object> {
-    return this.http.delete(this.createUrl('categories/' + id), this.options)
+    return this.http.delete(this.createUrl('categories/' + id), this.createRequestHeaderOptions())
       .map(data => {
         return data;
     });

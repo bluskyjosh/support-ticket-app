@@ -13,27 +13,27 @@ export class StatusService extends ServiceBase {
   }
 
   getStatuses (): Observable<Status[]> {
-    return this.http.get(this.createUrl('statuses'), this.options)
+    return this.http.get(this.createUrl('statuses'), this.createRequestHeaderOptions())
       .map(this.extractStatuses);
 }
 
   getStatus(id: number): Observable<Status> {
-    return this.http.get(this.createUrl('statuses/' + id), this.options)
+    return this.http.get(this.createUrl('statuses/' + id), this.createRequestHeaderOptions())
       .map(this.extractStatus);
 }
 
   createStatus(status: Status): Observable<Status> {
-    return this.http.post(this.createUrl('statuses'), status, this.options)
+    return this.http.post(this.createUrl('statuses'), status, this.createRequestHeaderOptions())
       .map(this.extractStatus);
 }
 
   updateStatus(status: Status): Observable<Status> {
-    return this.http.put(this.createUrl('statuses/' + status.id), status, this.options)
+    return this.http.put(this.createUrl('statuses/' + status.id), status, this.createRequestHeaderOptions())
       .map(this.extractStatus);
 }
 
   deleteStatus(id: number): Observable<object> {
-    return this.http.delete(this.createUrl('statuses/' + id), this.options)
+    return this.http.delete(this.createUrl('statuses/' + id), this.createRequestHeaderOptions())
       .map(data => {
         return data;
       });

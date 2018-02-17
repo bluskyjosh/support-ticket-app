@@ -14,23 +14,26 @@ export class ServiceBase {
 
   constructor(protected http: Http) {
     this.baseURL = environment.apiUrl + '/api/';
-    this.createRequestHeader();
   }
 
-  protected createRequestHeader(): void {
+  protected createRequestHeaderOptions(): RequestOptions {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
-    headers.append('Cache-Control', 'no-cache');
+    headers.append('Cache-Control', 'no-cache, no-store, must-revalidate');
+    headers.append('Pragma', 'no-cache');
+    headers.append('Expires', '0');
+
     const jwtToken = sessionStorage.getItem('userToken') ? new Jwt().from(JSON.parse(sessionStorage.getItem('userToken'))) : null;
     if (jwtToken) {
       headers.append('Authorization', jwtToken.token_type + ' ' + jwtToken.access_token);
     }
-    this.options = new RequestOptions(
+    const options = new RequestOptions(
       {
         headers: headers
       }
     );
+    return options;
   }
 
   protected createUrl(url: string, parameters: {[key: string]: string} = null ): string {

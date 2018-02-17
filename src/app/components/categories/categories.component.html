@@ -1,0 +1,55 @@
+<div class="row mt-4">
+  <div class="col-12">
+
+        <h3>Categories</h3>
+        <ngx-datatable #categoryTable
+                       class="material"
+                       [columnMode]="'force'"
+                       [headerHeight]="65"
+                       [footerHeight]="50"
+                       [rowHeight]="'auto'"
+                       [limit]="10"
+                       [rows]="categories"
+                       [sorts]="[{prop: 'id', dir:'acs'}]">
+
+          <!--Column Templates-->
+          <ngx-datatable-column name="Id"
+                                prop="id"
+                                [resizeable]="false"
+                                [sortable]="true"
+                                [draggable]="false">
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Name"
+                                prop="name"
+                                [resizeable]="false"
+                                [sortable]="true"
+                                [draggable]="false">
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Description"
+                                prop="description"
+                                [resizeable]="false"
+                                [sortable]="true"
+                                [draggable]="false">
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Add"
+                                [maxWidth]="80"
+                                [resizeable]="false"
+                                [sortable]="false"
+                                [draggable]="false">
+            <ng-template let-row="row" ngx-datatable-header-template>
+              <div class="pull-right">
+                <i class="btn btn-success" title="Add Category">
+                  <span class="fa fa-plus fa-lg"></span>
+                </i>
+              </div>
+
+            </ng-template>
+          </ngx-datatable-column>
+
+        </ngx-datatable>
+
+  </div>
+</div>

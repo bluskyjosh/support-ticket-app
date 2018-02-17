@@ -6,6 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxDatatableModule  } from '@swimlane/ngx-datatable';
 import { routing } from './app.routing';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -28,15 +29,16 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
-import { MyTicketsComponent } from './components/my-tickets/my-tickets.component';
-import { AllTicketsComponent } from './components/all-tickets/all-tickets.component';
 import { UsersComponent } from './components/users/users.component';
-import { SupportSettingsComponent } from './components/support-settings/support-settings.component';
 import { TicketComponent } from './components/ticket/ticket.component';
 import { UserComponent } from './components/user/user.component';
 import { CategoryComponent } from './components/category/category.component';
 import { PriorityComponent } from './components/priority/priority.component';
 import { StatusComponent } from './components/status/status.component';
+import { TicketsComponent } from './components/tickets/tickets.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { PrioritiesComponent } from './components/priorities/priorities.component';
+import { StatusesComponent } from './components/statuses/statuses.component';
 
 
 
@@ -48,15 +50,16 @@ import { StatusComponent } from './components/status/status.component';
     LoginComponent,
     RegisterComponent,
     PasswordResetComponent,
-    MyTicketsComponent,
-    AllTicketsComponent,
     UsersComponent,
-    SupportSettingsComponent,
     TicketComponent,
     UserComponent,
     CategoryComponent,
     PriorityComponent,
-    StatusComponent
+    StatusComponent,
+    TicketsComponent,
+    CategoriesComponent,
+    PrioritiesComponent,
+    StatusesComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ import { StatusComponent } from './components/status/status.component';
     FormsModule,
     NgbModule.forRoot(),
     NgxChartsModule,
+    NgxDatatableModule,
     ReactiveFormsModule,
     routing,
     ToastrModule.forRoot({

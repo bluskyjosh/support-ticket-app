@@ -15,54 +15,54 @@ export class TicketService extends ServiceBase {
   }
 
   getTickets (): Observable<Ticket[]> {
-    return this.http.get(this.createUrl('tickets'), this.options)
+    return this.http.get(this.createUrl('tickets'), this.createRequestHeaderOptions())
       .map(this.extractTickets);
   }
 
   getTicket(id: number): Observable<Ticket> {
-    return this.http.get(this.createUrl('tickets/' + id), this.options)
+    return this.http.get(this.createUrl('tickets/' + id), this.createRequestHeaderOptions())
       .map(this.extractTicket);
   }
 
   createTicket(ticket: Ticket): Observable<Ticket> {
-    return this.http.post(this.createUrl('tickets'), ticket, this.options)
+    return this.http.post(this.createUrl('tickets'), ticket, this.createRequestHeaderOptions())
       .map(this.extractTicket);
   }
 
   updateTicket(ticket: Ticket): Observable<Ticket> {
-    return this.http.put(this.createUrl('tickets/' + ticket.id), ticket, this.options)
+    return this.http.put(this.createUrl('tickets/' + ticket.id), ticket, this.createRequestHeaderOptions())
       .map(this.extractTicket);
   }
 
   deleteTicket(id: number): Observable<object> {
-    return this.http.delete(this.createUrl('tickets/' + id), this.options)
+    return this.http.delete(this.createUrl('tickets/' + id), this.createRequestHeaderOptions())
       .map(data => {
         return data;
       });
   }
 
   getMyTickets (): Observable<Ticket[]> {
-    return this.http.get(this.createUrl('my_tickets'), this.options)
+    return this.http.get(this.createUrl('my_tickets'), this.createRequestHeaderOptions())
       .map(this.extractTickets);
   }
 
   getMyTicket(id: number): Observable<Ticket> {
-    return this.http.get(this.createUrl('my_tickets/' + id), this.options)
+    return this.http.get(this.createUrl('my_tickets/' + id), this.createRequestHeaderOptions())
       .map(this.extractTicket);
   }
 
   createMyTicket(ticket: Ticket): Observable<Ticket> {
-    return this.http.post(this.createUrl('my_tickets'), ticket, this.options)
+    return this.http.post(this.createUrl('my_tickets'), ticket, this.createRequestHeaderOptions())
       .map(this.extractTicket);
   }
 
   updateMyTicket(ticket: Ticket): Observable<Ticket> {
-    return this.http.put(this.createUrl('my_tickets/' + ticket.id), ticket, this.options)
+    return this.http.put(this.createUrl('my_tickets/' + ticket.id), ticket, this.createRequestHeaderOptions())
       .map(this.extractTicket);
   }
 
   deleteMyTicket(id: number): Observable<object> {
-    return this.http.delete(this.createUrl('my_tickets/' + id), this.options)
+    return this.http.delete(this.createUrl('my_tickets/' + id), this.createRequestHeaderOptions())
       .map(data => {
         return data;
       });

@@ -15,27 +15,27 @@ export class UserService extends ServiceBase {
   }
 
   getUsers (): Observable<User[]> {
-    return this.http.get(this.createUrl('users'), this.options)
+    return this.http.get(this.createUrl('users'), this.createRequestHeaderOptions())
       .map(this.extractUsers);
   }
 
   getUser(id: number): Observable<User> {
-    return this.http.get(this.createUrl('users/' + id), this.options)
+    return this.http.get(this.createUrl('users/' + id), this.createRequestHeaderOptions())
       .map(this.extractUser);
   }
 
   createUser(user: User): Observable<User> {
-    return this.http.post(this.createUrl('users'), user, this.options)
+    return this.http.post(this.createUrl('users'), user, this.createRequestHeaderOptions())
       .map(this.extractUser);
   }
 
   updateUser(user: User): Observable<User> {
-    return this.http.put(this.createUrl('users/' + user.id), user, this.options)
+    return this.http.put(this.createUrl('users/' + user.id), user, this.createRequestHeaderOptions())
       .map(this.extractUser);
   }
 
   deleteUser(id: number): Observable<object> {
-    return this.http.delete(this.createUrl('users/' + id), this.options)
+    return this.http.delete(this.createUrl('users/' + id), this.createRequestHeaderOptions())
       .map(data => {
         return data;
       });

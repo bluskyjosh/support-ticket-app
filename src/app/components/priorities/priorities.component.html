@@ -1,7 +1,7 @@
 <div class="row mt-4">
   <div class="col-12">
 
-    <h3>Users</h3>
+    <h3>Priorities</h3>
     <ngx-datatable #categoryTable
                    class="material"
                    [columnMode]="'force'"
@@ -9,7 +9,7 @@
                    [footerHeight]="50"
                    [rowHeight]="'auto'"
                    [limit]="10"
-                   [rows]="users"
+                   [rows]="priorities"
                    [sorts]="[{prop: 'id', dir:'acs'}]">
 
       <!--Column Templates-->
@@ -20,37 +20,28 @@
                             [draggable]="false">
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="First Name"
-                            prop="first_name"
+      <ngx-datatable-column name="Name"
+                            prop="name"
                             [resizeable]="false"
                             [sortable]="true"
                             [draggable]="false">
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="Last Name"
-                            prop="last_name"
+      <ngx-datatable-column name="Description"
+                            prop="description"
                             [resizeable]="false"
                             [sortable]="true"
                             [draggable]="false">
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="Email Address"
-                            prop="email"
+      <ngx-datatable-column name="Color"
+                            prop="color"
+                            [maxWidth]="100"
                             [resizeable]="false"
-                            [sortable]="true"
+                            [sortable]="false"
                             [draggable]="false">
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="Administrator"
-                            [maxWidth]="200"
-                            [resizeable]="false"
-                            [sortable]="true"
-                            [comparator]="boolComparator"
-                            [draggable]="false">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <div class="text-center">
-            <input type="checkbox" class="form-check-input" [disabled]="true" [(checked)]="row.is_admin">
-          </div>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          <div class="color-att" [ngStyle]="setStyle(value)">{{value}}</div>
         </ng-template>
       </ngx-datatable-column>
 
@@ -61,7 +52,7 @@
                             [draggable]="false">
         <ng-template let-row="row" ngx-datatable-header-template>
           <div class="pull-right">
-            <i class="btn btn-success" title="Add Category">
+            <i class="btn btn-success" title="Add Priority">
               <span class="fa fa-plus fa-lg"></span>
             </i>
           </div>

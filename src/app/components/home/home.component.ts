@@ -20,11 +20,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = new User().from(JSON.parse(sessionStorage.getItem('currentUser')));
-    if (this.currentUser.is_admin) {
-      this.activeComponent = 'AllTickets';
-    } else {
-      this.activeComponent = 'MyTickets';
-    }
+    this.activeComponent = 'Tickets';
   }
 
   setVisibleComponent(component: string): void {

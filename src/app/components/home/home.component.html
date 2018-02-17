@@ -7,20 +7,21 @@
 
   <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown" [ngClass]="{ 'active': isActiveComponent('MyTickets') || isActiveComponent('AllTickets') }">
-        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="ticketDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Tickets
+      <li class="nav-item" [ngClass]="{ 'active': isActiveComponent('Tickets') }">
+        <a class="nav-link" (click)="setVisibleComponent('Tickets')">Tickets</a>
+      </li>
+      <li class="nav-item" *ngIf="currentUser.is_admin" [ngClass]="{ 'active': isActiveComponent('Users')}">
+        <a class="nav-link"  (click)="setVisibleComponent('Users')">Manage Users</a>
+      </li>
+      <li class="nav-item dropdown" *ngIf="currentUser.is_admin" [ngClass]="{ 'active': isActiveComponent('Categories') || isActiveComponent('Priorites') || isActiveComponent('Statuses') }">
+        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="settingsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Manage Support Settings
         </a>
-        <div class="dropdown-menu bg-dark text-white" aria-labelledby="ticketDropdown">
-          <a class="dropdown-item" (click)="setVisibleComponent('MyTickets')">My Tickets</a>
-          <a class="dropdown-item" *ngIf="currentUser.is_admin" (click)="setVisibleComponent('AllTickets')">All Tickets</a>
+        <div class="dropdown-menu bg-dark text-white" aria-labelledby="settingsDropdown">
+          <a class="dropdown-item" (click)="setVisibleComponent('Categories')">Categories</a>
+          <a class="dropdown-item" (click)="setVisibleComponent('Priorities')">Priorities</a>
+          <a class="dropdown-item" (click)="setVisibleComponent('Statuses')">Statuses</a>
         </div>
-      </li>
-      <li class="nav-item" [ngClass]="{ 'active': isActiveComponent('Users')}">
-        <a class="nav-link" *ngIf="currentUser.is_admin" (click)="setVisibleComponent('Users')">Manage Users</a>
-      </li>
-      <li class="nav-item" [ngClass]="{ 'active': isActiveComponent('SupportSettings')}">
-        <a class="nav-link" *ngIf="currentUser.is_admin" (click)="setVisibleComponent('SupportSettings')">Manage Support Settings</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -39,11 +40,12 @@
 
 <div class="container-fluid">
   <div class="row">
-    <main role="main" class="col-lg-10 col-md-12 col-sm-12 col-12">
-      <app-my-tickets *ngIf="isActiveComponent('MyTickets')"></app-my-tickets>
-      <app-all-tickets *ngIf="isActiveComponent('AllTickets')"></app-all-tickets>
+    <main role="main" class="col-lg-12 col-md-12 col-sm-12 col-12">
+      <app-tickets *ngIf="isActiveComponent('Tickets')"></app-tickets>
       <app-users *ngIf="isActiveComponent('Users')"></app-users>
-      <app-support-settings *ngIf="isActiveComponent('SupportSettings')"></app-support-settings>
+      <app-categories *ngIf="isActiveComponent('Categories')"></app-categories>
+      <app-priorities *ngIf="isActiveComponent('Priorities')"></app-priorities>
+      <app-statuses *ngIf="isActiveComponent('Statuses')"></app-statuses>
     </main>
   </div>
 
