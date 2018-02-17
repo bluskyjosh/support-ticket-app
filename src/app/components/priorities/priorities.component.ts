@@ -24,7 +24,11 @@ export class PrioritiesComponent implements OnInit {
   }
 
   setStyle(value: string) {
-    return {'background-color': value};
+    const style = {'background-color': value};
+    if (value === '#000000') {
+      style['color'] = '#FFFFFF';
+    }
+    return style;
   }
 
 }
