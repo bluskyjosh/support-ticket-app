@@ -3,18 +3,18 @@
     <div class="card">
       <h2 class="card-title">Ticket {{type}}</h2>
       <div class="card-body">
-        <form name="form"  (ngSubmit)="f.form.valid && save(); f.submitted = false;" #f="ngForm" novalidate>
+        <form name="form"  (ngSubmit)="f.form.valid && save();" #f="ngForm" novalidate>
 
           <div class="row">
             <div class="col-12">
               <div class="form-group" [ngClass]="{'has-danger': f.submitted && !title.valid}">
                 <label class="col-form-label-lg" for="title">Title</label>
-                <input *ngIf="!notNewTicket()" type="text" class="form-control" id="title" name="title"
+                <input type="text" class="form-control" id="title" name="title"
                        [(ngModel)]="ticket.title"
-                       #title="ngModel"
                        [ngClass]="{'is-invalid': f.submitted && !title.valid }"
                        [disabled]="isDisabled()"
-                       required />
+                       [hidden]="notNewTicket()"
+                       required #title="ngModel" />
                 <div *ngIf="f.submitted && !title.valid && !notNewTicket()" class="help-block invalid-feedback">Title is Required</div>
                 <div class="form-control" *ngIf="notNewTicket()">{{ticket.title}}</div>
               </div>
@@ -57,14 +57,13 @@
 
           <div class="form-group"  [ngClass]=" {'has-danger': f.submitted && !description.valid}">
             <label class="col-form-label-lg" for="description">Description</label>
-            <textarea *ngIf="!notNewTicket()" class="form-control" id="description" name="description"
+            <textarea class="form-control" id="description" name="description"
                       [(ngModel)]="ticket.description"
                       [ngClass]="{'is-invalid': f.submitted && !description.valid }"
                       [disabled]="isDisabled()"
-                      #description="ngModel"
                       rows="10"
-                      required
-            ></textarea>
+                      [hidden]="notNewTicket()"
+                      required #description="ngModel"></textarea>
             <div *ngIf="f.submitted && !description.valid && !notNewTicket()" class="help-block invalid-feedback">Description is Required</div>
             <div *ngIf="notNewTicket()" class="form-control" [innerHtml]="ticket.description">
 

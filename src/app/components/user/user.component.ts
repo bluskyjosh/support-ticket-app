@@ -14,6 +14,7 @@ export class UserComponent implements OnInit {
 
   @Input() user: User;
   currentUser: User;
+  type: string;
 
   constructor(public activeModal: NgbActiveModal,
               private userService: UserService,
@@ -21,6 +22,11 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = new User().from(JSON.parse(sessionStorage.getItem('currentUser')));
+    if (this.isNewUser()) {
+      this.type = 'New';
+    } else {
+      this.type = 'Edit';
+    }
   }
 
   save(): void {

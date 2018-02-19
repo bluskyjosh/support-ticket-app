@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import { AlertMessageService } from '../../services/alert-message.service';
 import { AlertError} from '../../models/alert-error.model';
@@ -108,6 +107,7 @@ export class TicketComponent implements OnInit {
           this.ticket = data;
           this.type = this.ticket.ticket_id;
           this.alertMessageService.showSuccess('Ticket successfully created.', 'Save Successful');
+
         },
           errors => {
             const alertErrors = new AlertError().from(errors.json());
@@ -122,6 +122,7 @@ export class TicketComponent implements OnInit {
         this.ticketService.updateTicket(this.ticket).subscribe(data => {
           this.ticket = data;
           this.alertMessageService.showSuccess('Ticket successfully updated', 'Save Successful');
+
         },
           errors => {
             const alertErrors = new AlertError().from(errors.json());
@@ -139,6 +140,7 @@ export class TicketComponent implements OnInit {
           this.ticket = data;
           this.type = this.ticket.ticket_id;
           this.alertMessageService.showSuccess('Ticket successfully created.', 'Save Successful');
+
         },
           errors => {
             const alertErrors = new AlertError().from(errors.json());
@@ -153,6 +155,7 @@ export class TicketComponent implements OnInit {
         this.ticketService.updateMyTicket(this.ticket).subscribe( data => {
           this.ticket = data;
           this.alertMessageService.showSuccess('Ticket successfully updated', 'Save Successful');
+
         },
           errors => {
             const alertErrors = new AlertError().from(errors.json());
