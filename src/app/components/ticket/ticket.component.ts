@@ -106,21 +106,63 @@ export class TicketComponent implements OnInit {
       if (this.ticket.id === 0) {
         this.ticketService.createTicket(this.ticket).subscribe(data => {
           this.ticket = data;
-        });
+          this.type = this.ticket.ticket_id;
+          this.alertMessageService.showSuccess('Ticket successfully created.', 'Save Successful');
+        },
+          errors => {
+            const alertErrors = new AlertError().from(errors.json());
+            if (alertErrors.message === null) {
+              this.alertMessageService.showError('Oops! Something went wrong');
+            } else {
+              const errorString = alertErrors.getErrorString();
+              this.alertMessageService.showError(errorString, alertErrors.message);
+            }
+          });
       } else {
         this.ticketService.updateTicket(this.ticket).subscribe(data => {
           this.ticket = data;
-        });
+          this.alertMessageService.showSuccess('Ticket successfully updated', 'Save Successful');
+        },
+          errors => {
+            const alertErrors = new AlertError().from(errors.json());
+            if (alertErrors.message === null) {
+              this.alertMessageService.showError('Oops! Something went wrong');
+            } else {
+              const errorString = alertErrors.getErrorString();
+              this.alertMessageService.showError(errorString, alertErrors.message);
+            }
+          });
       }
     } else {
       if (this.ticket.id === 0) {
         this.ticketService.createMyTicket(this.ticket).subscribe( data => {
           this.ticket = data;
-        });
+          this.type = this.ticket.ticket_id;
+          this.alertMessageService.showSuccess('Ticket successfully created.', 'Save Successful');
+        },
+          errors => {
+            const alertErrors = new AlertError().from(errors.json());
+            if (alertErrors.message === null) {
+              this.alertMessageService.showError('Oops! Something went wrong');
+            } else {
+              const errorString = alertErrors.getErrorString();
+              this.alertMessageService.showError(errorString, alertErrors.message);
+            }
+          });
       } else {
         this.ticketService.updateMyTicket(this.ticket).subscribe( data => {
           this.ticket = data;
-        });
+          this.alertMessageService.showSuccess('Ticket successfully updated', 'Save Successful');
+        },
+          errors => {
+            const alertErrors = new AlertError().from(errors.json());
+            if (alertErrors.message === null) {
+              this.alertMessageService.showError('Oops! Something went wrong');
+            } else {
+              const errorString = alertErrors.getErrorString();
+              this.alertMessageService.showError(errorString, alertErrors.message);
+            }
+          });
       }
     }
 
