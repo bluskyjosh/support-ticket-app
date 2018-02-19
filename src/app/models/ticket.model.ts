@@ -2,6 +2,7 @@ import {ModelBase} from './model-base.model';
 import {Priority} from './priority.model';
 import {Category} from './category.model';
 import {Status} from './status.model';
+import {Comment} from './comment.model';
 
 export class Ticket extends ModelBase {
   id: number;

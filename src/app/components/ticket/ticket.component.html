@@ -1,3 +1,121 @@
-<p>
-  ticket works!
-</p>
+<div class="row mt-4">
+  <div class="col-12 ">
+    <div class="card">
+      <h2 class="card-title">Ticket {{type}}</h2>
+      <div class="card-body">
+        <form name="form"  (ngSubmit)="f.form.valid && save(); f.submitted = false;" #f="ngForm" novalidate>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group" [ngClass]="{'has-danger': f.submitted && !title.valid}">
+                <label class="col-form-label-lg" for="title">Title</label>
+                <input *ngIf="!notNewTicket()" type="text" class="form-control" id="title" name="title"
+                       [(ngModel)]="ticket.title"
+                       #title="ngModel"
+                       [ngClass]="{'is-invalid': f.submitted && !title.valid }"
+                       [disabled]="isDisabled()"
+                       required />
+                <div *ngIf="f.submitted && !title.valid && !notNewTicket()" class="help-block invalid-feedback">Title is Required</div>
+                <div class="form-control" *ngIf="notNewTicket()">{{ticket.title}}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group" [ngClass]=" {'has-danger': f.submitted && !category.valid}">
+                <label class="col-form-label-lg" for="category">Category</label>
+                <select id="category" name="category" class="form-control"
+                        [disabled]="isDisabled()"
+                        [(ngModel)]="ticket.category_id" #category="ngModel">
+                  <option *ngFor="let category of categories" [value]="category.id" >{{category.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group" [ngClass]=" {'has-danger': f.submitted && !priority.valid}">
+                <label class="col-form-label-lg" for="priority">Priority</label>
+                <select id="priority" name="priority" class="form-control"
+                        [disabled]="isDisabled()"
+                        [(ngModel)]="ticket.priority_id" #priority="ngModel">
+                  <option *ngFor="let priority of priorities" [value]="priority.id" >{{priority.name}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="form-group" *ngIf="notNewTicket()" [ngClass]=" {'has-danger': f.submitted && !status.valid}">
+                <label class="col-form-label-lg" for="status">Status</label>
+                <select id="status" name="status" class="form-control"
+                        [disabled]="isDisabled()"
+                        [(ngModel)]="ticket.status_id" #status="ngModel">
+                  <option *ngFor="let status of statuses" [value]="status.id" >{{status.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group"  [ngClass]=" {'has-danger': f.submitted && !description.valid}">
+            <label class="col-form-label-lg" for="description">Description</label>
+            <textarea *ngIf="!notNewTicket()" class="form-control" id="description" name="description"
+                      [(ngModel)]="ticket.description"
+                      [ngClass]="{'is-invalid': f.submitted && !description.valid }"
+                      [disabled]="isDisabled()"
+                      #description="ngModel"
+                      rows="10"
+                      required
+            ></textarea>
+            <div *ngIf="f.submitted && !description.valid && !notNewTicket()" class="help-block invalid-feedback">Description is Required</div>
+            <div *ngIf="notNewTicket()" class="form-control" [innerHtml]="ticket.description">
+
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="!isDisabled()">
+            <button type="button" class="btn" (click)="cancel()">Cancel</button>
+            <button  class="btn btn-primary">Save</button>
+            <!--<button type="button" class="btn btn-danger pull-right" (click)="delete()">Delete</button>-->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 *ngIf="notNewTicket()">Comments</h3>
+<div *ngFor="let comment of ticket.comments" class="row" >
+  <div class="col-12">
+    <div class="card">
+      <div class="card-title">
+        <b>{{comment.created_by.first_name}} {{comment.created_by.last_name}}:</b> {{comment.created_at | date:'short'}}
+      </div>
+      <div class="card-body">
+        {{comment.comment}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="notNewTicket()" class="row">
+  <div class="col-12">
+    <form name="addComment" (ngSubmit)="f.form.valid && addComment(); f.reset()" #f="ngForm" novalidate>
+      <div class="form-group mt-3 "  [ngClass]=" {'has-danger': f.submitted && !comment.valid}">
+        <textarea *ngIf="notNewTicket()" class="form-control" id="comment" name="comment"
+                  [(ngModel)]="newComment.comment"
+                  [ngClass]="{'is-invalid': f.submitted && !comment.valid }"
+                  #comment="ngModel"
+                  placeholder="Add Comment"
+                  rows="5"
+                  required
+        ></textarea>
+        <div *ngIf="f.submitted && !description.valid && !notNewTicket()" class="help-block invalid-feedback">Comment is Required.</div>
+
+        <div class="form-group mt-1">
+          <!--<button type="button" class="btn" (click)="cancel()">Cancel</button>-->
+          <button  class="btn btn-primary">Add Comment</button>
+          <!--<button type="button" class="btn btn-danger pull-right" (click)="delete()">Delete</button>-->
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       data => {
         this.alertMessageService.showSuccess('Welcome!', 'Login Successful');
         this.authService.setCurrentUser().subscribe(user => {
-          this.router.navigateByUrl('home');
+          this.router.navigateByUrl('home/tickets');
         });
       },
       errors => {

@@ -1,4 +1,5 @@
 import {ModelBase} from './model-base.model';
+import {User} from './user.model';
 
 export class Comment extends ModelBase {
   id: number;
@@ -6,4 +7,5 @@ export class Comment extends ModelBase {
   comment: string;
   created_at: string;
   updated_at: string;
+  created_by: User;
 }

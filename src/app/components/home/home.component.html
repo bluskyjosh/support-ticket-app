@@ -7,20 +7,20 @@
 
   <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" [ngClass]="{ 'active': isActiveComponent('Tickets') }">
-        <a class="nav-link" (click)="setVisibleComponent('Tickets')">Tickets</a>
+      <li class="nav-item">
+        <a routerLink="tickets" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Tickets</a>
       </li>
-      <li class="nav-item" *ngIf="currentUser.is_admin" [ngClass]="{ 'active': isActiveComponent('Users')}">
-        <a class="nav-link"  (click)="setVisibleComponent('Users')">Manage Users</a>
+      <li class="nav-item" *ngIf="currentUser.is_admin">
+        <a class="nav-link" routerLinkActive="active" routerLink="users">Manage Users</a>
       </li>
-      <li class="nav-item dropdown" *ngIf="currentUser.is_admin" [ngClass]="{ 'active': isActiveComponent('Categories') || isActiveComponent('Priorites') || isActiveComponent('Statuses') }">
+      <li class="nav-item dropdown" *ngIf="currentUser.is_admin" routerLinkActive="active">
         <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="settingsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Manage Support Settings
         </a>
         <div class="dropdown-menu bg-dark text-white" aria-labelledby="settingsDropdown">
-          <a class="dropdown-item" (click)="setVisibleComponent('Categories')">Categories</a>
-          <a class="dropdown-item" (click)="setVisibleComponent('Priorities')">Priorities</a>
-          <a class="dropdown-item" (click)="setVisibleComponent('Statuses')">Statuses</a>
+          <a class="dropdown-item" (click)="redirectTo('categories')">Categories</a>
+          <a class="dropdown-item" (click)="redirectTo('priorities')">Priorities</a>
+          <a class="dropdown-item" (click)="redirectTo('statuses')">Statuses</a>
         </div>
       </li>
     </ul>
@@ -41,11 +41,7 @@
 <div class="container-fluid">
   <div class="row">
     <main role="main" class="col-lg-12 col-md-12 col-sm-12 col-12">
-      <app-tickets *ngIf="isActiveComponent('Tickets')"></app-tickets>
-      <app-users *ngIf="isActiveComponent('Users')"></app-users>
-      <app-categories *ngIf="isActiveComponent('Categories')"></app-categories>
-      <app-priorities *ngIf="isActiveComponent('Priorities')"></app-priorities>
-      <app-statuses *ngIf="isActiveComponent('Statuses')"></app-statuses>
+      <router-outlet></router-outlet>
     </main>
   </div>
 

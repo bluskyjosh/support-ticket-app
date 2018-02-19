@@ -20,12 +20,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = new User().from(JSON.parse(sessionStorage.getItem('currentUser')));
-    this.activeComponent = 'Tickets';
   }
 
-  setVisibleComponent(component: string): void {
-    this.activeComponent = component;
-  }
+
 
   isActiveComponent(component: string): boolean {
     return this.activeComponent === component;
@@ -33,6 +30,10 @@ export class HomeComponent implements OnInit {
 
   logout(): void {
     this.router.navigateByUrl('/login');
+  }
+
+  redirectTo(route: string) {
+    this.router.navigateByUrl('/home/' + route);
   }
 
 }
