@@ -93,7 +93,8 @@ import { StatusesComponent } from './components/statuses/statuses.component';
   entryComponents: [
     CategoryComponent,
     PriorityComponent,
-    StatusComponent
+    StatusComponent,
+    UserComponent
   ]
 })
 export class AppModule { }
