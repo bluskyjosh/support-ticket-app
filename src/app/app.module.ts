@@ -40,6 +40,7 @@ import { TicketsComponent } from './components/tickets/tickets.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { PrioritiesComponent } from './components/priorities/priorities.component';
 import { StatusesComponent } from './components/statuses/statuses.component';
+import { AboutComponent } from './components/about/about.component';
 
 
 
@@ -60,7 +61,8 @@ import { StatusesComponent } from './components/statuses/statuses.component';
     TicketsComponent,
     CategoriesComponent,
     PrioritiesComponent,
-    StatusesComponent
+    StatusesComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
