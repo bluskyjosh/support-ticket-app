@@ -94,8 +94,8 @@
           </div>
 
         </ng-template>
-        <ng-template *ngIf="currentUser.is_admin" let-row="row" ngx-datatable-cell-template>
-          <i class="btn fa fa-trash fa-lg pull-right"
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <i class="btn fa fa-trash fa-lg pull-right" *ngIf="currentUser.is_admin"
              (click)="deleteItem(row,$event)" placement="bottom" ngbTooltip="Delete Ticket"></i>
         </ng-template>
       </ngx-datatable-column>
