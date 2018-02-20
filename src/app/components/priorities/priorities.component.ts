@@ -63,6 +63,7 @@ export class PrioritiesComponent implements OnInit {
         this.alertMessageService.showSuccess('Priority successfully deleted.', 'Delete Successful');
         const index = this.priorities.indexOf(priority);
         this.priorities.splice(index, 1);
+        this.priorities = [...this.priorities];
 
       },
       errors => {

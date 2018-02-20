@@ -63,6 +63,7 @@ export class CategoriesComponent implements OnInit {
       this.alertMessageService.showSuccess('Category successfully deleted.', 'Delete Successful');
       const index = this.categories.indexOf(category);
       this.categories.splice(index, 1);
+      this.categories = [...this.categories];
 
     },
       errors => {

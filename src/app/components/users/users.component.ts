@@ -62,6 +62,7 @@ export class UsersComponent implements OnInit {
         this.alertMessageService.showSuccess('Status successfully deleted.', 'Delete Successful');
         const index = this.users.indexOf(user);
         this.users.splice(index, 1);
+        this.users = [...this.users];
 
       },
       errors => {

@@ -52,6 +52,7 @@ export class TicketsComponent implements OnInit {
         this.alertMessageService.showSuccess('Ticket successfully deleted.', 'Delete Successful');
         const index = this.tickets.indexOf(ticket);
         this.tickets.splice(index, 1);
+        this.tickets = [...this.tickets];
 
       },
       errors => {
